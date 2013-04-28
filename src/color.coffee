@@ -55,7 +55,7 @@ class ColorCanvas.Color
     this
 
   clone: ->
-    new Color(@toRGB())
+    new Color(@toRGBA())
 
   toString: ->
     if @a? and @a isnt 1
