@@ -34,15 +34,15 @@ class ColorCanvas.Picker extends Spine.Controller
 
       @change()
 
-    @spectrum.bind 'change', (color) =>
-      # Only change Hue
+    @spectrum.bind 'change', (pure_color) =>
+      # pure_color contains the max-hued version, no grayscaleness
+      # Only change Hue of 'main' color (@color)
       hsv   = @color.toHSV()
-      hsv.h = color.toHSV().h
+      hsv.h = pure_color.toHSV().h
       color = new Color(hsv)
-
       @color.set(color.toRGB())
 
-      @gradient.setColor(@color)
+      @gradient.setColor(@color, pure_color) # pass the pure version too
       @display.setColor(@color)
       @alpha.setColor(@color)
 

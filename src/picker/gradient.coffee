@@ -14,7 +14,7 @@ class ColorCanvas.Gradient extends ColorCanvas.Canvas
     @color or= new Color.Black
     @setColor(@color)
 
-  setColor: (@color) ->
+  setColor: (@color, @pure = @color.toPure()) ->
     @render()
 
   renderGradient: (xy, colors...) ->
@@ -36,7 +36,8 @@ class ColorCanvas.Gradient extends ColorCanvas.Canvas
       new Color.White
     )
 
-    pure = @color.toPure()
+    #pure = @color.toPure()
+    pure = @pure
 
     @renderGradient(
       [@width, 0],
