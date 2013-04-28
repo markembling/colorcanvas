@@ -2,7 +2,7 @@ Color = ColorCanvas.Color
 
 class ColorCanvas.Gradient extends ColorCanvas.Canvas
   className: 'gradient'
-  width: 250
+  width: 310
   height: 215
 
   constructor: ->
