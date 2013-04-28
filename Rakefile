@@ -1,5 +1,6 @@
 require 'pathname'
 require 'sprockets'
+require 'uglifier'
 
 root        = Pathname(File.expand_path('../', __FILE__))
 environment = Sprockets::Environment.new(root)
@@ -20,6 +21,10 @@ task :build do
     f.write environment['input'].to_s
   end
 
-  `uglifyjs lib/colorcanvas.js > lib/colorcanvas.min.js`
-  `uglifyjs lib/colorcanvas.input.js > lib/colorcanvas.input.min.js`
+  File.open('lib/colorcanvas.min.js', 'w+') do |f|
+    f.write Uglifier.new.compile(File.read("lib/colorcanvas.js"))
+  end
+  File.open('lib/colorcanvas.input.min.js', 'w+') do |f|
+    f.write Uglifier.new.compile(File.read("lib/colorcanvas.input.js"))
+  end
 end
